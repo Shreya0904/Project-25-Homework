@@ -7,14 +7,11 @@ const Body = Matter.Body;
 
 function preload()
 {
-	
+dustbingreen=loadImage("dustbingreen.png");
 }
 
 function setup() {
 	createCanvas(1200, 700);
-
-	groundSprite=createSprite(width/2, height-35, width,10);
-	groundSprite.shapeColor=color(255)
 
 	engine = Engine.create();
 	world = engine.world;
@@ -28,16 +25,11 @@ function setup() {
 		}
 
 	//Create the Bodies Here.
-    paper = new Paper (30,645,20,20);
-  
-	boxCenterSprite= createSprite(965,667,150,20);
-	boxCenterSprite.shapeColor="red";	
+	paper = new Paper (65,630,50,50);
 	
-	boxRightSprite= createSprite(1060,610,30,100);
-	boxRightSprite.shapeColor="red";	
-	
-	boxLeftSprite= createSprite(870,615,30,100);
-	boxLeftSprite.shapeColor="red";	
+	dustbin=createSprite(965,580,150,20);
+	dustbin.addImage(dustbingreen);
+	dustbin.scale=0.75;
 	
 		 ground = new Ground(600,685,1200,20);
 		 boxCenter = new Ground(965,667,150,20);
@@ -48,23 +40,25 @@ function setup() {
   
 }
 
-
 function draw() {
   rectMode(CENTER);
-  background(0);
+  background("pink");
   
   text(mouseX+","+mouseY,mouseX,mouseY);
 
+
   paper.display();
-  drawSprites();
   ground.display();
+  boxCenter.display();
+  boxRight.display();
+  boxLeft.display();
+
+  drawSprites(); 
 }
 
-
 function keyPressed(){
-	if(KeyCode=== UP_ARROW){
-
-	   Matter.Body.applyForce(paper.body,paper.position,{x:85,y:-85})
+	if (keyCode === UP_ARROW) {
+	   Matter.Body.applyForce(paper.body,paper.position,{x:135,y:-135})
 		
 	 }	
 	}
